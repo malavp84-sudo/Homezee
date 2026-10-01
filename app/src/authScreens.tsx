@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { colors, gradients, radius, space } from './theme';
 import { PrimaryButton } from './components';
 import { useStore } from './store';
-import { MOCK_OTP } from './authService';
+import { LIVE, MOCK_OTP } from './authService';
 
 export function LoginScreen({ navigation }: any) {
   const { sendOtp, continueAsGuest } = useStore();
@@ -109,7 +109,7 @@ export function OtpScreen({ route, navigation }: any) {
         <View style={{ flexDirection: 'row', marginTop: space.lg, opacity: code.length === 6 && !busy ? 1 : 0.5 }}>
           <PrimaryButton label={busy ? 'Verifying...' : 'Verify & Continue'} onPress={() => code.length === 6 && !busy && submit()} />
         </View>
-        <Text style={s.hint}>Demo mode: use code {MOCK_OTP}</Text>
+        {!LIVE && <Text style={s.hint}>Demo mode: use code {MOCK_OTP}</Text>}
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

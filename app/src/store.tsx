@@ -79,6 +79,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     sendOtp: auth.sendOtp,
     verifyOtp: async (phone, code) => setUser(await auth.verifyOtp(phone, code)),
     logout: () => {
+      auth.signOut().catch(() => {});
       setUser(null);
       setGuest(false);
     },

@@ -1,3 +1,5 @@
 expo.log
 homezee-qr.png
 *.log
+.env
+.env.local
